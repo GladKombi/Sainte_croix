@@ -1,0 +1,13 @@
+<?php
+$ActiveClasse=0;
+$ActiveEleve=0;
+$ActiveEseigant=0;
+$ActiveOption=0;
+$ActiveCours=0;
+$ActiveHoraire=0;
+$ActiveInformation=0;
+$ActiveCommunique=0;
+$ActivePayement=0;
+$ActivePeriode=0;
+$ActiveCotations=0;
+$ActiveUser=0;
