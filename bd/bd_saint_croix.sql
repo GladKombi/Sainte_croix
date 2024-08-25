@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1
--- Généré le : mar. 26 mars 2024 à 13:52
--- Version du serveur : 10.4.28-MariaDB
--- Version de PHP : 8.2.4
+-- Host: 127.0.0.1
+-- Generation Time: Aug 25, 2024 at 07:57 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,57 +18,105 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `bd_saint_croix`
+-- Database: `bd_saint_croix`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `classe`
+-- Table structure for table `catfrais`
+--
+
+CREATE TABLE `catfrais` (
+  `id` int(11) NOT NULL,
+  `description` varchar(50) NOT NULL,
+  `statut` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `catfrais`
+--
+
+INSERT INTO `catfrais` (`id`, `description`, `statut`) VALUES
+(1, 'Frais du vers', 0),
+(2, 'Frais Scolaire', 0),
+(3, 'Glas', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `classe`
 --
 
 CREATE TABLE `classe` (
   `id` int(11) NOT NULL,
   `nomClasse` varchar(50) NOT NULL,
   `orientation` int(11) NOT NULL,
-  `status` int(11) NOT NULL
+  `statut` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `classe`
+--
+
+INSERT INTO `classe` (`id`, `nomClasse`, `orientation`, `statut`) VALUES
+(1, '7ieme A', 1, 0),
+(2, '8ieme A ', 1, 0),
+(3, '1 ieme B  ', 2, 0);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `cours`
+-- Table structure for table `cours`
 --
 
 CREATE TABLE `cours` (
   `id` int(11) NOT NULL,
   `intituler` varchar(50) NOT NULL,
-  `maxima` int(11) NOT NULL
+  `maxima` int(11) NOT NULL,
+  `statut` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `cours`
+--
+
+INSERT INTO `cours` (`id`, `intituler`, `maxima`, `statut`) VALUES
+(1, 'Web 1', 12, 0);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `eleve`
+-- Table structure for table `eleve`
 --
 
 CREATE TABLE `eleve` (
-  `id` int(11) NOT NULL,
+  `matricule` varchar(50) NOT NULL,
   `nom` varchar(50) NOT NULL,
   `postnom` varchar(50) NOT NULL,
   `prenom` varchar(50) NOT NULL,
   `genre` varchar(50) NOT NULL,
+  `adresse` text NOT NULL,
   `lieuNaissance` varchar(50) NOT NULL,
   `dateNaissance` date NOT NULL,
-  `age` int(11) NOT NULL,
-  `nomParent` varchar(50) NOT NULL,
-  `numeroParent` varchar(50) NOT NULL
+  `nomPere` varchar(50) NOT NULL,
+  `nomMere` varchar(50) NOT NULL,
+  `numeroParent` varchar(50) NOT NULL,
+  `photo` text NOT NULL,
+  `statut` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `eleve`
+--
+
+INSERT INTO `eleve` (`matricule`, `nom`, `postnom`, `prenom`, `genre`, `adresse`, `lieuNaissance`, `dateNaissance`, `nomPere`, `nomMere`, `numeroParent`, `photo`, `statut`) VALUES
+('CSSC1/2024', 'glad', 'kombi', 'lar', 'F', 'kambali', 'katwa', '2000-05-24', 'kikako', 'lea', '0321456', 'IMG-20240714-WA0017.jpg', 0);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `enseigant`
+-- Table structure for table `enseigant`
 --
 
 CREATE TABLE `enseigant` (
@@ -77,16 +125,23 @@ CREATE TABLE `enseigant` (
   `postnom` varchar(50) NOT NULL,
   `prenom` varchar(50) NOT NULL,
   `genre` varchar(50) NOT NULL,
-  `Numerotelephone` varchar(50) NOT NULL,
+  `telephone` varchar(50) NOT NULL,
   `adress` text NOT NULL,
   `photo` text NOT NULL,
   `statut` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `enseigant`
+--
+
+INSERT INTO `enseigant` (`id`, `nom`, `postnom`, `prenom`, `genre`, `telephone`, `adress`, `photo`, `statut`) VALUES
+(1, 'Glad ', 'Kombi  ', 'Lad_77 ', 'Masculin', '0997019978709778', 'kambali ', 'IMG-20240714-WA0017.jpg', 0);
+
 -- --------------------------------------------------------
 
 --
--- Structure de la table `horaire`
+-- Table structure for table `horaire`
 --
 
 CREATE TABLE `horaire` (
@@ -99,7 +154,7 @@ CREATE TABLE `horaire` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `information`
+-- Table structure for table `information`
 --
 
 CREATE TABLE `information` (
@@ -112,30 +167,46 @@ CREATE TABLE `information` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `orientation`
+-- Table structure for table `option`
 --
 
-CREATE TABLE `orientation` (
+CREATE TABLE `option` (
   `id` int(11) NOT NULL,
-  `nomOption` varchar(50) NOT NULL,
-  `status` int(11) NOT NULL
+  `Description` varchar(50) NOT NULL,
+  `statut` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `option`
+--
+
+INSERT INTO `option` (`id`, `Description`, `statut`) VALUES
+(1, 'Cycle d&#039;orientation', 0),
+(2, 'Commercial et Gestion', 0);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `periode`
+-- Table structure for table `periode`
 --
 
 CREATE TABLE `periode` (
   `id` int(11) NOT NULL,
-  `intituler` varchar(50) NOT NULL
+  `libelle` varchar(50) NOT NULL,
+  `statut` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `periode`
+--
+
+INSERT INTO `periode` (`id`, `libelle`, `statut`) VALUES
+(1, '1er Periode', 0);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `point`
+-- Table structure for table `point`
 --
 
 CREATE TABLE `point` (
@@ -148,7 +219,7 @@ CREATE TABLE `point` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -160,129 +231,135 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Index pour les tables déchargées
+-- Indexes for dumped tables
 --
 
 --
--- Index pour la table `classe`
+-- Indexes for table `catfrais`
+--
+ALTER TABLE `catfrais`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `classe`
 --
 ALTER TABLE `classe`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `cours`
+-- Indexes for table `cours`
 --
 ALTER TABLE `cours`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `eleve`
+-- Indexes for table `eleve`
 --
 ALTER TABLE `eleve`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`matricule`);
 
 --
--- Index pour la table `enseigant`
+-- Indexes for table `enseigant`
 --
 ALTER TABLE `enseigant`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `horaire`
+-- Indexes for table `horaire`
 --
 ALTER TABLE `horaire`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `information`
+-- Indexes for table `information`
 --
 ALTER TABLE `information`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `orientation`
+-- Indexes for table `option`
 --
-ALTER TABLE `orientation`
+ALTER TABLE `option`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `periode`
+-- Indexes for table `periode`
 --
 ALTER TABLE `periode`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `point`
+-- Indexes for table `point`
 --
 ALTER TABLE `point`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT pour les tables déchargées
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT pour la table `classe`
+-- AUTO_INCREMENT for table `catfrais`
+--
+ALTER TABLE `catfrais`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `classe`
 --
 ALTER TABLE `classe`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT pour la table `cours`
+-- AUTO_INCREMENT for table `cours`
 --
 ALTER TABLE `cours`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT pour la table `eleve`
---
-ALTER TABLE `eleve`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `enseigant`
+-- AUTO_INCREMENT for table `enseigant`
 --
 ALTER TABLE `enseigant`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT pour la table `horaire`
+-- AUTO_INCREMENT for table `horaire`
 --
 ALTER TABLE `horaire`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `information`
+-- AUTO_INCREMENT for table `information`
 --
 ALTER TABLE `information`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `orientation`
+-- AUTO_INCREMENT for table `option`
 --
-ALTER TABLE `orientation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `option`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT pour la table `periode`
+-- AUTO_INCREMENT for table `periode`
 --
 ALTER TABLE `periode`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT pour la table `point`
+-- AUTO_INCREMENT for table `point`
 --
 ALTER TABLE `point`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
