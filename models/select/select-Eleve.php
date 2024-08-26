@@ -1,11 +1,11 @@
 <?php
     if (isset($_GET['idEleve'])){
         $id=$_GET['idEleve'];
-        $getDataMod=$connexion->prepare("SELECT * FROM eleve WHERE id=?");
+        $getDataMod=$connexion->prepare("SELECT * FROM eleve WHERE matricule=?");
         $getDataMod->execute([$id]);
         $tab=$getDataMod->fetch();
         # Url du traitement lors de la modification
-        $url="../models/updat/up-eleve-post.php?idclient=".$id;
+        $url="../models/updat/up-eleve-post.php?idEleve=".$id;
         $btn="Modifier";
         $title="Modifier un(e) élève(e)";
     }

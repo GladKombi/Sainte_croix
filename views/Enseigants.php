@@ -60,14 +60,12 @@ require_once('../models/select/select-Enseignant.php'); //Appel du script de sel
                                         <select required id="" name="genre" class="form-select">
                                             <?php if (isset($_GET['idEnseignant'])) {
                                                 $genre = $tab['genre'];
-                                                if ($genre = "Masculin") {
                                             ?>
-                                                    <option selected value="Masculin">Masculin</option>
-                                                    <option value="Feminin">Feminin</option>
-                                                <?php
-                                                }
+                                                <option value="Masculin">Masculin</option>
+                                                <option <?php if ($genre == "Feminin") { ?> Selected <?php } ?>value="Feminin">Feminin</option>
+                                            <?php
                                             } else {
-                                                ?>
+                                            ?>
                                                 <option desabled>Choisir un genre</option>
                                                 <option value="Masculin">Masculin</option>
                                                 <option value="Feminin">Feminin</option>
@@ -136,7 +134,7 @@ require_once('../models/select/select-Enseignant.php'); //Appel du script de sel
                                         <td> <?= $idEnseignant["adress"] ?></td>
                                         <td> <?= $idEnseignant["telephone"] ?></td>
                                         <td>
-                                            <img src="../photo/<?= $idEnseignant["photo"] ?>" class="rounded-circle" width="90px" height="90px" alt="">
+                                            <img src="../photo/profilProf/<?= $idEnseignant["photo"] ?>" class="rounded-circle" width="90px" height="90px" alt="">
                                         </td>
                                         <td>
                                             <a href='Enseigants.php?idEnseignant=<?= $idEnseignant['id'] ?>' class="btn btn-sm btn-success">

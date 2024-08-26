@@ -36,7 +36,7 @@ require_once('../models/select/select-Eleve.php'); //Appel du script de selectio
                     ?>
                     <!-- Le form qui enregistrer les données  -->
                     <?php
-                    if (isset($_GET['AjoutElev'])) {
+                    if (isset($_GET['AjoutElev']) || isset($_GET['idEleve'])) {
                     ?>
                         <div class="col-xl-12 ">
                             <form action="<?= $url ?>" method="POST" class="shadow p-3" enctype="multipart/form-data">
@@ -44,53 +44,72 @@ require_once('../models/select/select-Eleve.php'); //Appel du script de selectio
                                     <h4 class="text-center"><?= $title ?></h4>
                                     <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                         <label for="">Nom <span class="text-danger">*</span></label>
-                                        <input required type="text" name="nom" class="form-control" placeholder="Entrez le nom" value="">
+                                        <input required type="text" name="nom" class="form-control" placeholder="Entrez le nom" <?php if (isset($_GET['idEleve'])) { ?>
+                                            value="<?php echo $tab['nom']; ?> <?php } ?>">
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                         <label for="">Postnom <span class="text-danger">*</span></label>
-                                        <input required type="text" name="postnom" class="form-control" placeholder="Entrez le postnom" value="">
+                                        <input required type="text" name="postnom" class="form-control" placeholder="Entrez le postnom" <?php if (isset($_GET['idEleve'])) { ?>
+                                            value="<?php echo $tab['postnom']; ?> <?php } ?>">
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                         <label for="">Prenom <span class="text-danger">*</span></label>
-                                        <input required type="text" name="prenom" class="form-control" placeholder="Entrez le prenom" value="">
+                                        <input required type="text" name="prenom" class="form-control" placeholder="Entrez le prenom" <?php if (isset($_GET['idEleve'])) { ?>
+                                            value="<?php echo $tab['prenom']; ?> <?php } ?>">
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                         <label for="">Genre <span class="text-danger">*</span></label>
                                         <select required id="" name="genre" class="form-select">
-
-                                            <option value="" desabled>Choisir un genre</option>
-                                            <option value="M">Masculin</option>
-                                            <option value="F">Feminin</option>
-
+                                            <?php if (isset($_GET['idEleve'])) {
+                                                $genre = $tab['genre'];
+                                            ?>
+                                                <option value="Masculin">Masculin</option>
+                                                <option <?php if ($genre == "Feminin") { ?> Selected <?php } ?>value="Feminin">Feminin</option>
+                                            <?php
+                                            } else {
+                                            ?>
+                                                <option desabled>Choisir un genre</option>
+                                                <option value="Masculin">Masculin</option>
+                                                <option value="Feminin">Feminin</option>
+                                            <?php
+                                            }
+                                            ?>
                                         </select>
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                         <label for="">Lieu de naissance <span class="text-danger">*</span></label>
-                                        <input required type="text" name="LieuNaissance" class="form-control" placeholder="Entrez le lieu de naissance" value="">
+                                        <input required type="text" name="LieuNaissance" class="form-control" placeholder="Entrez le lieu de naissance" <?php if (isset($_GET['idEleve'])) { ?>
+                                            value="<?php echo $tab['lieuNaissance']; ?> <?php } ?>">
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                         <label for="">Date de naissance <span class="text-danger">*</span></label>
-                                        <input required type="Date" name="DateNaissance" class="form-control" value="">
+                                        <input required type="Date" name="DateNaissance" class="form-control" <?php if (isset($_GET['idEleve'])) { ?>
+                                            value="<?php echo $tab['dateNaissance']; ?> <?php } ?>">
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                         <label for="">Adresse <span class="text-danger">*</span></label>
-                                        <input required type="text" name="adress" class="form-control" placeholder="Entrez l'adresse" value="">
+                                        <input required type="text" name="adress" class="form-control" placeholder="Entrez l'adresse" <?php if (isset($_GET['idEleve'])) { ?>
+                                            value="<?php echo $tab['adresse']; ?> <?php } ?>">
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                         <label for="">Nom du pere ou Tutaire <span class="text-danger">*</span></label>
-                                        <input required type="text" name="NomPere" class="form-control" placeholder="Entrez le Nom du père et/ou tutaire" value="">
+                                        <input required type="text" name="NomPere" class="form-control" placeholder="Entrez le Nom du père et/ou tutaire" <?php if (isset($_GET['idEleve'])) { ?>
+                                            value="<?php echo $tab['nomPere']; ?> <?php } ?>">
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                         <label for="">Nom de la mère ou Tutaire <span class="text-danger">*</span></label>
-                                        <input required type="text" name="NomMere" class="form-control" placeholder="Entrez le Nom de la mère et/ou tutaire" value="">
+                                        <input required type="text" name="NomMere" class="form-control" placeholder="Entrez le Nom de la mère et/ou tutaire" <?php if (isset($_GET['idEleve'])) { ?>
+                                            value="<?php echo $tab['nomMere']; ?> <?php } ?>">
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                         <label for="">Telephone du parent et/ou tutaire <span class="text-danger">*</span></label>
-                                        <input required type="text" name="telephone" class="form-control" placeholder="Entrez le N° Tel" value="">
+                                        <input required type="text" name="telephone" class="form-control" placeholder="Entrez le N° Tel" <?php if (isset($_GET['idEleve'])) { ?>
+                                            value="<?php echo $tab['numeroParent']; ?> <?php } ?>">
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                         <label for="">Photo de l'eleve <span class="text-danger">*</span></label>
-                                        <input required type="file" name="photo" class="form-control" placeholder="Choisir la photo de l'eleve" value="">
+                                        <input required type="file" name="photo" class="form-control" placeholder="Choisir la photo de l'eleve" <?php if (isset($_GET['idEleve'])) { ?>
+                                            value="<?php echo $tab['photo']; ?> <?php } ?>">
                                     </div>
 
                                     <div class="col-xl-12 col-lg-12 col-md-12 mt-10 col-sm-12 p-3 aling-center">
@@ -117,6 +136,7 @@ require_once('../models/select/select-Eleve.php'); //Appel du script de selectio
                             <thead>
                                 <tr>
                                     <th>N°</th>
+                                    <th>Matricule</th>
                                     <th>Noms</th>
                                     <th>Genre</th>
                                     <th>Adresse</th>
@@ -132,12 +152,13 @@ require_once('../models/select/select-Eleve.php'); //Appel du script de selectio
                                 ?>
                                     <tr>
                                         <th scope="row"><?= $n; ?></th>
+                                        <td><?= $idEleve["matricule"] ?></td>
                                         <td><?= $idEleve["nom"] . " " . $idEleve["postnom"] . " " . $idEleve["prenom"] ?></td>
                                         <td><?= $idEleve["genre"] ?></td>
                                         <td><?= $idEleve["adresse"] ?></td>
                                         <td><?= $idEleve["numeroParent"] ?></td>
                                         <td>
-                                            <a href="#" class="btn btn-success btn-sm">
+                                            <a href="eleves.php?idEleve=<?= $idEleve['matricule'] ?>" class="btn btn-success btn-sm">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
                                             <a onclick=" return confirm('Voulez-vous vraiment supprimer ?')" href="#" class="btn btn-danger btn-sm mt-1">
