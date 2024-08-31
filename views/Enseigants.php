@@ -140,7 +140,7 @@ require_once('../models/select/select-Enseignant.php'); //Appel du script de sel
                                             <a href='Enseigants.php?idEnseignant=<?= $idEnseignant['id'] ?>' class="btn btn-sm btn-success">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
-                                            <a onclick=" return confirm('Voulez-vous vraiment supprimer ?')" href="../models/delete/del-boutique-post.php?idSupcat=<?= $idEnseignant['id'] ?>" class="btn btn-danger btn-sm mt-1">
+                                            <a onclick=" return confirm('Voulez-vous vraiment supprimer ?')" href="../models/delete/del-Enseignant-post.php?idSupEns=<?= $idEnseignant['id'] ?>" class="btn btn-danger btn-sm mt-1">
                                                 <i class="bi bi-trash"></i>
                                             </a>
                                         </td>

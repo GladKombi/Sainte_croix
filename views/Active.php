@@ -13,3 +13,4 @@ $ActiveCotations=0;
 $ActiveUser=0;
 $ActiveCatFrais=0;
 $ActiveFrais=0;
+$ActiveHoraireV=0;

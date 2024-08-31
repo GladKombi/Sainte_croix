@@ -29,11 +29,12 @@ require_once('../models/select/select-Classe.php'); //Appel du script de selecti
                     <!-- pour afficher les massage  -->
                     <?php
                     if (isset($_SESSION['msg']) && !empty($_SESSION['msg'])) {
-                    ?><div class="alert-info alert text-center"><?= $_SESSION['msg'] ?></div><?php
-                                                                                            }
-                                                                                            #Cette ligne permet de vider la valeur qui se trouve dans la session message
-                                                                                            unset($_SESSION['msg']);
-                                                                                                ?>
+                    ?>
+                        <div class="alert-info alert text-center"><?= $_SESSION['msg'] ?></div>
+                    <?php  }
+                    #Cette ligne permet de vider la valeur qui se trouve dans la session message  
+                    unset($_SESSION['msg']);
+                    ?>
                     <!-- Le form qui enregistrer les données  -->
                     <div class="col-xl-4 col-lg-4 col-md-6">
                         <form action="<?= $url ?>" class="shadow p-3" method="POST">
@@ -53,7 +54,7 @@ require_once('../models/select/select-Classe.php'); //Appel du script de selecti
                                         while ($Option = $rep->fetch()) {
                                             $Orientation = $tab['orientation'];
                                             if (isset($_GET['idClass'])) {
-                                            ?>
+                                        ?>
                                                 <option <?php if ($Option['id'] == $Orientation) { ?> Selected <?php } ?> value="<?php echo $Option['id']; ?>">
                                                     <?php echo  $Option['Description']; ?>
                                                 </option>
@@ -96,7 +97,7 @@ require_once('../models/select/select-Classe.php'); //Appel du script de selecti
                                             <a href='classe.php?idClass=<?= $idClass['id'] ?>' class="btn btn-sm btn-success">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
-                                            <a onclick=" return confirm('Voulez-vous vraiment supprimer ?')" href="../models/delete/del-boutique-post.php?idSupcat=<?= $idClass['id'] ?>" class="btn btn-danger btn-sm mt-1">
+                                            <a onclick=" return confirm('Voulez-vous vraiment supprimer ?')" href="../models/delete/del-class-post.php?idSupClass=<?= $idClass['id'] ?>" class="btn btn-danger btn-sm mt-1">
                                                 <i class="bi bi-trash"></i>
                                             </a>
                                         </td>
