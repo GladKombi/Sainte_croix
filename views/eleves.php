@@ -161,7 +161,7 @@ require_once('../models/select/select-Eleve.php'); //Appel du script de selectio
                                             <a href="eleves.php?idEleve=<?= $idEleve['matricule'] ?>" class="btn btn-success btn-sm">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
-                                            <a onclick=" return confirm('Voulez-vous vraiment supprimer ?')" href="#" class="btn btn-danger btn-sm mt-1">
+                                            <a onclick=" return confirm('Voulez-vous vraiment supprimer ?')" href="../models/delete/del-Eleve-post.php?idSupEleve=<?= $idEleve['matricule'] ?>" class="btn btn-danger btn-sm mt-1">
                                                 <i class="bi bi-trash-fill"></i>
                                             </a>
                                         </td>

@@ -22,6 +22,27 @@
                     <div class="col-12">
                         <h4>Horaire</h4>
                     </div>
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <h4 class="card-title text-center">Les paramettres de l'horaire</h4>
+                                    <p class="card-text">
+                                        Gummies bonbon apple pie fruitcake icing biscuit apple pie jelly-o sweet roll. Toffee
+                                        sugar plum sugar plum jelly-o jujubes bonbon dessert carrot cake.
+                                    </p>
+                                    <center>
+                                      <a href="hor/listehoraire.php" class="btn icon icon-left btn-primary"><i class="bi bi-gear"></i> Gerer hor</a>  
+                                    </center>
+                                    
+                                </div>                                
+                            </div>
+                            <div class="card-footer d-flex justify-content-between">
+                                <a href="#" class="btn btn-primary w-100">Voir Tout l'horaire</a>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- pour afficher les massage  -->
                     <div class="alert-info alert text-center">Message</div>
                     <!-- Le form qui enregistrer les données  -->
