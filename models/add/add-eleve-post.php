@@ -8,12 +8,12 @@ if (isset($_POST['Valider'])) {
     $req->execute();
     if ($mat = $req->fetch()) {
         $valeur = $mat['matricule'];
-        if (strlen($valeur) == 10) {
-            $numero = substr($valeur, 3, 1) + 1;
+        if (strlen($valeur) == 9) {
+            $numero = substr($valeur, 4, 1) + 1;
             echo $numero;
         } else {
-            $nb = strlen($valeur) - 10 + 1;
-            $numero = substr($valeur, 3, $nb) + 1;
+            $nb = strlen($valeur) - 9 + 1;
+            $numero = substr($valeur, 4, $nb) + 1;
             echo $numero;
         }
     } else {

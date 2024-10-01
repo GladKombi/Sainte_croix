@@ -23,6 +23,6 @@ if (isset($_GET['search']) && !empty($_GET['search'])) {
     $getData->execute(["%" . $search . "%", "%" . $search . "%", "%" . $search . "%", "%" . $search . "%", "%" . $search . "%", "%" . $search . "%"]);
 } else {
     $statut = 0;
-    $getData = $connexion->prepare("SELECT * from `cours` WHERE `statut`=?");
+    $getData = $connexion->prepare("SELECT * from `cours` WHERE `supprimer`=?");
     $getData->execute([$statut]);
 }

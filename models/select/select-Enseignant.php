@@ -25,6 +25,6 @@
     }
     else{
         $statut=0;
-        $getData=$connexion->prepare("SELECT * from `enseigant` WHERE `statut`=?");
+        $getData=$connexion->prepare("SELECT * from `enseignants` WHERE `supprimer`=?");
         $getData->execute([$statut]);
     }

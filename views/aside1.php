@@ -1,6 +1,7 @@
 <?php
 // $ActiveClasse=0;
 // $ActiveOption=0;
+include_once('../connexion/connexion.php');
 ?>
 <div id="sidebar" class='active'>
     <div class="sidebar-wrapper active">
@@ -11,6 +12,7 @@
         <div class="sidebar-menu">
             <ul class="menu">
                 <li class='sidebar-title'>Menus</li>
+                <?php if($_SESSION['fonction']=="admin"){?>
                 <li <?php if($ActiveClasse==1){?> class="sidebar-item active"<?php } ?>>
                     <a href="classe.php" class='sidebar-link'>
                         <i data-feather="home" width="20"></i>
@@ -39,6 +41,12 @@
                     <a href="cours.php" class='sidebar-link'>
                         <i class="bi bi-clipboard" width="25"></i>
                         <span>Cours</span>
+                    </a>
+                </li>
+                <li <?php if($ActiveAffectation==1){?> class="sidebar-item active"<?php } ?>>
+                    <a href="Affectation.php" class='sidebar-link'>
+                        <i class="bi bi-clipboard" width="25"></i>
+                        <span>Affectation</span>
                     </a>
                 </li>
                 <li <?php if($ActiveHoraire==1){?> class="sidebar-item active"<?php } ?>>
@@ -83,18 +91,45 @@
                         <span>Periodes</span>
                     </a>
                 </li>
-                <li <?php if($ActiveCotations==1){?> class="sidebar-item active"<?php } ?>>
+                <li <?php if($ActiveAnee==1){?> class="sidebar-item active"<?php } ?>>
+                    <a href="AnneeScolaire.php" class='sidebar-link'>
+                        <i class="bi bi-calendar-day-fill" width="25"></i>
+                        <span>Année Scolaire</span>
+                    </a>
+                </li>
+                <li <?php if($ActivePromo==1){?> class="sidebar-item active"<?php } ?>>
+                    <a href="promotion.php" class='sidebar-link'>
+                        <i class="bi bi-calendar-day-fill" width="25"></i>
+                        <span>Promotion</span>
+                    </a>
+                </li>
+                <li <?php if($ActiveInscription==1){?> class="sidebar-item active"<?php } ?>>
+                    <a href="inscription.php" class='sidebar-link'>
+                        <i class="bi bi-calendar-day-fill" width="25"></i>
+                        <span>Inscription</span>
+                    </a>
+                </li>
+                <!-- <li <?php if($ActiveCotations==1){?> class="sidebar-item active"<?php } ?>>
                     <a href="Cote.php" class='sidebar-link'>
                         <i class="bi bi-clipboard" width="25"></i>
                         <span>Cotations</span>
                     </a>
-                </li>
+                </li> -->
                 <li <?php if($ActiveUser==1){?> class="sidebar-item active"<?php } ?>>
                     <a href="utilisateurs.php" class='sidebar-link'>
                         <i data-feather="user" width="25"></i>
                         <span>Utilisateur</span>
                     </a>
                 </li>
+                <?php }else if($_SESSION['fonction']=="enseignant"){?>
+                <li <?php if($ActiveEvaluation==1){?> class="sidebar-item active"<?php } ?>>
+                    <a href="Evalution.php" class='sidebar-link'>
+                        <i class="bi bi-clipboard" width="25"></i>
+                        <span>Evaluation</span>
+                    </a>
+                </li>
+                <?php  } ?>
+                
 
 
 

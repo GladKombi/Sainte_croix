@@ -54,7 +54,7 @@ require_once('../models/select/select-Fix-Horaire.php');
                                         </select>
                                     </div>
                                     <div class="col-12">
-                                        <button class="btn btn-primary w-100" type="submit" name="envoyer">Suivant</button>
+                                        <button class="btn btn-success w-100" type="submit" name="envoyer">Suivant</button>
                                     </div>
                                 </form>
                             </div>
@@ -92,7 +92,7 @@ require_once('../models/select/select-Fix-Horaire.php');
                                         </select>
                                     </div>
                                     <div class="col-12">
-                                        <button class="btn btn-primary w-100" type="submit" name="envoyer">Suivant</button>
+                                        <button class="btn btn-success w-100" type="submit" name="envoyer">Suivant</button>
                                     </div>
                                 </form>
                             </div>
@@ -130,7 +130,7 @@ require_once('../models/select/select-Fix-Horaire.php');
                                         </select>
                                     </div>
                                     <div class="col-12">
-                                        <button class="btn btn-primary w-100" type="submit" name="envoyer">Enregistrer</button>
+                                        <button class="btn btn-success w-100" type="submit" name="envoyer">Enregistrer</button>
                                     </div>
                                 </form>
                             </div>
@@ -166,7 +166,7 @@ require_once('../models/select/select-Fix-Horaire.php');
                                         </select>
                                     </div>
                                     <div class="col-12">
-                                        <button class="btn btn-primary w-100" type="submit" name="Suivant">Suivant</button>
+                                        <button class="btn btn-success w-100" type="submit" name="Suivant">Suivant</button>
                                     </div>
                                 </form>
                             </div>

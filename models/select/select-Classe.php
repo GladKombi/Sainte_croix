@@ -25,6 +25,6 @@
     }
     else{
         $statut=0;
-        $getData=$connexion->prepare("SELECT classe.*,`option`.`Description` FROM `classe`,`option` WHERE classe.orientation=`option`.id AND classe.`statut`=?");
+        $getData=$connexion->prepare("SELECT classe.*,`option`.`Description` FROM `classe`,`option` WHERE classe.options=`option`.id AND classe.`supprimer`=?;");
         $getData->execute([$statut]);
     }

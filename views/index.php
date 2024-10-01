@@ -10,7 +10,10 @@
 
 <body>
     <div id="app">
-    <?php require_once('aside1.php') ?>
+        
+    <?php require_once('Active.php');
+        $ActiveHomme = 1;
+    require_once('aside1.php') ?>
         <div id="main">
             <nav class="navbar navbar-header navbar-expand navbar-light">
                 <a class="sidebar-toggler" href="#"><span class="navbar-toggler-icon"></span></a>

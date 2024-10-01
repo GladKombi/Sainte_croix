@@ -1,83 +1,38 @@
 <?php
-//la connexion a la base de données
-include_once('../../connexion/connexion.php');
-
-//la creation de l'evenement qui sert à envoyer les données à la base de données
-//Lors qu'on a cliquer sur le bouton valider
-
-if (isset($_POST['send'])) {
-    $_description = htmlspecialchars($_POST['description']);
-    $_montant = htmlspecialchars($_POST['montant']);
-    $_commande = htmlspecialchars($_POST['commande']);
-
-    //la requete qui envoi les données de la base de données
-    $req = $connexion->prepare("SELECT panier.quantite*panier.prix as montant from panier,commande where commande.id=panier.commande  and commande.id='$_commande'");
-    $req->execute();
-    $montrecup = 0;
-
-    while ($mon = $req->fetch()) {
-        $montrecup = $montrecup + $mon['montant'];
-    }
-
-    if ($montrecup < $_montant) {
-        $_SESSION['msg'] = "le montant est superieur ";
-        header("Location:../../views/paiement.php");
-    } else if ($montrecup > $_montant) {
-        $supprimer = 0;
-
-        $_sendData = $connexion->prepare("INSERT INTO paiement VALUES (NULL,NOW(),?,?,?,?)");
-        $_rows = $_sendData->execute([$_description, $_montant, $_commande, $supprimer]);
-
-        if ($_rows == 1) {
-            $montant = $montrecup - $_montant;
-            $description = "reste";
-
-            $_sendData = $connexion->prepare("INSERT INTO dettes VALUES (NULL,NOW(),?,?,?,?)");
-            $_rowss = $_sendData->execute([$description, $montant, $_commande, $supprimer]);
-
-            if ($_rowss == 1) {
-                $statut = 1;
-                $req = $connexion->prepare("UPDATE commande set statut=? where id='$_commande'");
-                $req->execute(array($statut));
-
-                $_SESSION['msg'] = "Enregistrement reussie";
-                header("Location:../../views/paiement.php");
-            }
+include('../../connexion/connexion.php');
+if (isset($_POST['Valider'])) {
+    $date = date("Y-m-d");
+    $description = htmlspecialchars($_POST['description']);
+    $eleve = htmlspecialchars($_POST['eleve']);
+    $frais = htmlspecialchars($_POST['frais']);
+    $montant = htmlspecialchars($_POST['montant']);
+    if (is_numeric($montant)) {
+        #verifier si le client existe ou pas dans la bd
+        $statut = 0;
+        $getMontant = $connexion->prepare("SELECT * FROM `frais` WHERE id=? AND statut=?");
+        $getMontant->execute([$frais, $statut]);
+        ($FraiMontantant = $getMontant->fetch());
+        $FraiMont = $FraiMontantant['Montant'];
+        if ($montant > $FraiMont) {
+            $msg = 'Le montant que vou avez saisi est superieur !';
+            $_SESSION['msg'] = $msg;
+            header("location:../../views/payement.php");
         } else {
-            $_SESSION['msg'] = "Echec d'enregistrement";
-            header("Location:../../views/paiement.php");
+            //Insertion data from database
+            $req = $connexion->prepare("INSERT INTO `paiement`(`date`, `description`, `frais`, `montant`, `statut`) VALUES (?,?,?,?,?)");
+            $resultat = $req->execute([$date, $description, $frais, $montant, $statut]);
+            if ($resultat == true) {
+                $_SESSION['msg'] = "Un Enregistrement viens d'etre effectué !";
+                header("location:../../views/payement.php");
+            } else {
+                $_SESSION['msg'] = "Echec d'enregistrement !";
+                header("location:../../views/payement.php");
+            }
         }
     } else {
-        $supprimer=0;
-        $_sendData = $connexion->prepare("INSERT INTO paiement VALUES (NULL,NOW(),?,?,?,?)");
-        $_rows = $_sendData->execute([$_description, $_montant, $_commande, $supprimer]);
-
-        if ($_rows == 1) {
-
-            $statut = 1;
-            $req = $connexion->prepare("UPDATE commande set statut=? where id='$_commande'");
-            $req->execute(array($statut));
-
-            $_SESSION['msg'] = "Enregistrement reussie";
-            header("Location:../../views/paiement.php");
-        } else {
-            $_SESSION['msg'] = "Echec d'enregistrement";
-            header("Location:../../views/paiement.php");
-        }
+        $_SESSION['msg'] = "Veillez saisir un montant valide !";
+        header("location:../../views/payement.php");
     }
-
-
-    //    $_sendData=$connexion->prepare("INSERT INTO paiement VALUES (NULL,NOW(),?,?,?)");
-    //    $_rows=$_sendData->execute([$_description,$_montant,$_commande]);
-    //    if($_rows==1){
-    //     $_SESSION['msg']="Enregistrement reussie";
-    //         header("Location:../../views/paiement.php");
-    //    }
-    //    else{
-    //     $_SESSION['msg']="Echec d'enregistrement";
-    //         header("Location:../../views/paiement.php");
-    //    }
-
 } else {
-    header("Location:../../views/paiement.php");
+    header('location:../../views/payement.php');
 }

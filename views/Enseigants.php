@@ -86,6 +86,30 @@ require_once('../models/select/select-Enseignant.php'); //Appel du script de sel
                                             value="<?php echo $tab['telephone']; ?> <?php } ?>">
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
+                                    <label for="">Orientation <span class="text-danger">*</span></label>
+                                    <select required name="journee" id="" class="form-select">
+                                        <?php
+                                        $rep = $connexion->prepare("SELECT * from `jours` WHERE statut=?");
+                                        $rep->execute([0]);
+                                        $jour = "";
+                                        while ($idJour = $rep->fetch()) {
+                                            $jour = $tab['options'];
+                                            if (isset($_GET['idClass'])) {
+                                            ?>
+                                                <option <?php if ($idJour['id'] == $jour) { ?> Selected <?php } ?> value="<?php echo $idJour['id']; ?>">
+                                                    <?php echo  $idJour['jour']; ?>
+                                                </option>
+                                            <?php } else {
+                                            ?>
+                                                <option value="<?php echo $idJour['id']; ?>">
+                                                    <?php echo  $idJour['jour']; ?>
+                                                </option>
+                                        <?php }
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                         <label for="">Photo de l'Enseignant <span class="text-danger">*</span></label>
                                         <input required type="file" name="photo" class="form-control" placeholder="Choisir la photo de l'enseignant" <?php if (isset($_GET['idEnseignant'])) { ?>
                                             value="<?php echo $tab['photo']; ?> <?php } ?>">
@@ -109,6 +133,7 @@ require_once('../models/select/select-Enseignant.php'); //Appel du script de sel
 
                     <!-- La table qui affiche les données  -->
                     <div class="col-xl-12 table-responsive px-3 mt-3">
+                        <h4 class="text-center">Liste des enseigants</h4>
                         <table class='table table-hover' id="table1">
                             <thead>
                                 <tr>
@@ -117,7 +142,7 @@ require_once('../models/select/select-Enseignant.php'); //Appel du script de sel
                                     <th>Genre</th>
                                     <th>Adresse</th>
                                     <th>Tel</th>
-                                    <th>Photo</th>
+                                    <th>Profil</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -131,10 +156,10 @@ require_once('../models/select/select-Enseignant.php'); //Appel du script de sel
                                         <th scope="row"><?= $n; ?></th>
                                         <td> <?= $idEnseignant["nom"] . " " . $idEnseignant["postnom"] . " " . $idEnseignant["prenom"] ?></td>
                                         <td> <?= $idEnseignant["genre"] ?></td>
-                                        <td> <?= $idEnseignant["adress"] ?></td>
-                                        <td> <?= $idEnseignant["telephone"] ?></td>
+                                        <td> <?= $idEnseignant["adresse"] ?></td>
+                                        <td> <?= $idEnseignant["tel"] ?></td>
                                         <td>
-                                            <img src="../photo/profilProf/<?= $idEnseignant["photo"] ?>" class="rounded-circle" width="90px" height="90px" alt="">
+                                            <img src="../photo/profilProf/<?= $idEnseignant["photo"] ?>" class="rounded-circle" width="70px" height="70px" alt="">
                                         </td>
                                         <td>
                                             <a href='Enseigants.php?idEnseignant=<?= $idEnseignant['id'] ?>' class="btn btn-sm btn-success">

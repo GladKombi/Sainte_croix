@@ -8,15 +8,15 @@ if (isset($_POST['Valider']) && !empty($_GET['idClass'])) {
   if (!empty($description)) {
     #verifier si le client existe ou pas dans la bd
     $statut = 0;
-    $getClass = $connexion->prepare("SELECT * FROM `classe` WHERE `nomClasse`=? AND orientation=? AND statut=?");
-    $getClass->execute([$description, $option, $statut]);
+    $getClass = $connexion->prepare("SELECT * FROM `classe` WHERE `nomclasse`=? AND options=? AND supprimer=?");
+    $getClass->execute([$description, $Option, $statut]);
     ($Class = $getClass->fetch());
     if ($Class > 0) {
       $msg = 'Cette Class existe déjà dans la base de données !';
       $_SESSION['msg'] = $msg;
       header("location:../../views/classe.php");
     } else {
-      $req = $connexion->prepare("UPDATE `classe` SET `nomClasse`=?,`orientation`=? WHERE id=?");
+      $req = $connexion->prepare("UPDATE `classe` SET `nomclasse`=?,`options`=? WHERE id=?");
       $resultat = $req->execute([$description,$Option,$id]);
       if ($resultat == true) {
         $_SESSION['msg'] = "La modification réussi";

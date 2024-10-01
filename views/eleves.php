@@ -140,7 +140,8 @@ require_once('../models/select/select-Eleve.php'); //Appel du script de selectio
                                     <th>Noms</th>
                                     <th>Genre</th>
                                     <th>Adresse</th>
-                                    <th>Tel</th>
+                                    <th>Telphone responsable</th>
+                                    <th>Photo</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -157,6 +158,9 @@ require_once('../models/select/select-Eleve.php'); //Appel du script de selectio
                                         <td><?= $idEleve["genre"] ?></td>
                                         <td><?= $idEleve["adresse"] ?></td>
                                         <td><?= $idEleve["numeroParent"] ?></td>
+                                        <td>
+                                            <img src="../photo/profilEleve/<?= $idEleve["photo"] ?>" class="rounded-circle" width="90px" height="90px" alt="">
+                                        </td>
                                         <td>
                                             <a href="eleves.php?idEleve=<?= $idEleve['matricule'] ?>" class="btn btn-success btn-sm">
                                                 <i class="bi bi-pencil-square"></i>

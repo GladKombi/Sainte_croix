@@ -2,7 +2,10 @@
 # Se connecter à la BD
 include '../connexion/connexion.php';
 require_once("../models/select/Select-Horaire-View.php"); //Appel du script de selection
-$idclasse = $_GET['idcla'];
+if(isset($_GET['idcla'])){
+    $idclasse = $_GET['idcla'];
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,14 +42,15 @@ $idclasse = $_GET['idcla'];
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-3">
+                                        <a href="fix-horaire.php" class="btn icon icon-left btn-success"><i class="bi bi-node-plus"></i> Ajouter horaire</a>
                                             <div class="sidebar-menu">
                                                 <ul class="menu">
-                                                    <li class='sidebar-title'>Les classes</li>
+                                                    <h6 class="text-center">Les classes</h6>
                                                     <?php
                                                     while ($class = $getClass->fetch()) {
                                                         $id = $class['id'];
                                                     ?>
-                                                        <li class="sidebar-item active" value=<?php $id = $class['id'] ?>>
+                                                        <li class="sidebar-item active btn btn-successsuccess" value=<?php $id = $class['id'] ?>>
                                                             <a href="Horaire-View.php?PerClass&idcla=<?php echo $class['id'] ?> " class='sidebar-link'>
                                                                 <i data-feather="home" width="20"></i>
                                                                 <span><?php echo $class['nomclasse'] . " " . $class['options']; ?></span>
@@ -153,10 +157,10 @@ $idclasse = $_GET['idcla'];
                                         <center>
                                             <div class="row">
                                                 <div class="col-6">
-                                                    <a href="Horaire-View.php?PerClass&idcla=1" class="btn icon icon-left btn-primary"><i class="bi bi-node-plus"></i> Voir l'horaire</a>
+                                                    <a href="Horaire-View.php?PerClass&idcla=1" class="btn icon icon-left btn-success"><i class="bi bi-node-plus"></i> Voir l'horaire</a>
                                                 </div>
                                                 <div class="col-6">
-                                                    <a href="fix-horaire.php" class="btn icon icon-left btn-primary"><i class="bi bi-node-plus"></i> Ajouter horaire</a>
+                                                    <a href="fix-horaire.php" class="btn icon icon-left btn-success"><i class="bi bi-node-plus"></i> Ajouter horaire</a>
                                                 </div>
                                             </div>
                                         </center>

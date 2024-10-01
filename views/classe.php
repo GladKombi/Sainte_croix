@@ -31,10 +31,10 @@ require_once('../models/select/select-Classe.php'); //Appel du script de selecti
                     if (isset($_SESSION['msg']) && !empty($_SESSION['msg'])) {
                     ?>
                         <div class="alert-info alert text-center"><?= $_SESSION['msg'] ?></div>
-                    <?php  }
+                    <?php  } 
                     #Cette ligne permet de vider la valeur qui se trouve dans la session message  
-                    unset($_SESSION['msg']);
-                    ?>
+                     unset($_SESSION['msg']); 
+                     ?>
                     <!-- Le form qui enregistrer les données  -->
                     <div class="col-xl-4 col-lg-4 col-md-6">
                         <form action="<?= $url ?>" class="shadow p-3" method="POST">
@@ -42,7 +42,7 @@ require_once('../models/select/select-Classe.php'); //Appel du script de selecti
                             <div class="row">
                                 <div class="col-12 p-3">
                                     <label for="">Description <span class="text-danger">*</span></label>
-                                    <input required type="text" class="form-control" name="description" placeholder="Entrez la description" <?php if (isset($_GET['idClass'])) { ?> value="<?php echo $tab['nomClasse']; ?> <?php } ?>">
+                                    <input required type="text" class="form-control" name="description" placeholder="Entrez la description" <?php if (isset($_GET['idClass'])) { ?> value="<?php echo $tab['nomclasse']; ?> <?php } ?>">
                                 </div>
                                 <div class="col-xl-12 col-lg-12 col-md-6 p-3">
                                     <label for="">Orientation <span class="text-danger">*</span></label>
@@ -52,9 +52,9 @@ require_once('../models/select/select-Classe.php'); //Appel du script de selecti
                                         $rep->execute([0]);
                                         $Orientation = "";
                                         while ($Option = $rep->fetch()) {
-                                            $Orientation = $tab['orientation'];
+                                            $Orientation = $tab['options'];
                                             if (isset($_GET['idClass'])) {
-                                        ?>
+                                            ?>
                                                 <option <?php if ($Option['id'] == $Orientation) { ?> Selected <?php } ?> value="<?php echo $Option['id']; ?>">
                                                     <?php echo  $Option['Description']; ?>
                                                 </option>
@@ -92,12 +92,12 @@ require_once('../models/select/select-Classe.php'); //Appel du script de selecti
                                 ?>
                                     <tr>
                                         <th scope="row"><?= $n; ?></th>
-                                        <td> <?= $idClass["nomClasse"] . " " . $idClass["Description"] ?></td>
+                                        <td> <?= $idClass["nomclasse"] . " " . $idClass["Description"] ?></td>
                                         <td>
                                             <a href='classe.php?idClass=<?= $idClass['id'] ?>' class="btn btn-sm btn-success">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
-                                            <a onclick=" return confirm('Voulez-vous vraiment supprimer ?')" href="../models/delete/del-class-post.php?idSupClass=<?= $idClass['id'] ?>" class="btn btn-danger btn-sm mt-1">
+                                            <a onclick=" return confirm('Voulez-vous vraiment supprimer ?')" href="../models/delete/del-boutique-post.php?idSupcat=<?= $idClass['id'] ?>" class="btn btn-danger btn-sm mt-1">
                                                 <i class="bi bi-trash"></i>
                                             </a>
                                         </td>
