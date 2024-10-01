@@ -6,7 +6,7 @@ if (isset($_POST['Valider'])) {
     if (!empty($description)) {
         #verifier si le client existe ou pas dans la bd
         $statut = 0;
-        $getCours = $connexion->prepare("SELECT * FROM `cours` WHERE `intituler`=? AND statut=?");
+        $getCours = $connexion->prepare("SELECT * FROM `cours` WHERE `nomcours`=? AND supprimer=?");
         $getCours->execute([$description, $statut]);
         ($Cours = $getCours->fetch());
         if ($Cours > 0) {
@@ -15,7 +15,7 @@ if (isset($_POST['Valider'])) {
             header("location:../../views/Cours.php");
         } else {
             //Insertion data from database
-            $req = $connexion->prepare("INSERT INTO `cours`(`intituler`, `maxima`, `statut`) VALUES(?,?,?)");
+            $req = $connexion->prepare("INSERT INTO `cours`(`nomcours`, `maxima`, `supprimer`) VALUES(?,?,?)");
             $resultat = $req->execute([$description, $maxima, $statut]);
             if ($resultat == true) {
                 $_SESSION['msg'] = "Un Enregistrement viens d'etre effectué !";

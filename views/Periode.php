@@ -77,6 +77,9 @@ require_once('../models/select/select-Periodes.php'); //Appel du script de selec
                                         <a href='Periode.php?idPreiode=<?= $idPeriode['id'] ?>' class="btn btn-sm btn-success">
                                             <i class="bi bi-pencil-square"></i>
                                         </a>
+                                        <a href='notifier.php?idPreiode=<?= $idPeriode['id'] ?>' class="btn btn-sm btn-success">
+                                            <i class="bi bi-chat"></i>
+                                        </a>
                                         <a onclick=" return confirm('Voulez-vous vraiment supprimer ?')" href="../models/delete/del-Periode-post.php?idSupPeriode=<?= $idPeriode['id'] ?>" class="btn btn-danger btn-sm mt-1">
                                             <i class="bi bi-trash"></i>
                                         </a>

@@ -27,25 +27,24 @@
                             <div class="card-content">
                                 <div class="card-body">
                                     <h4 class="card-title text-center">Les paramettres de l'horaire</h4>
-                                    <p class="card-text">
-                                        Gummies bonbon apple pie fruitcake icing biscuit apple pie jelly-o sweet roll. Toffee
-                                        sugar plum sugar plum jelly-o jujubes bonbon dessert carrot cake.
+                                    <p class="card-text text-center">
+                                        ces paramettre servent à consulter et à mettre à jour l'horaire
                                     </p>
                                     <center>
-                                      <a href="hor/listehoraire.php" class="btn icon icon-left btn-primary"><i class="bi bi-gear"></i> Gerer hor</a>  
+                                      <a href="Horaire-View.php" class="btn icon icon-left btn-success"><i class="bi bi-gear"></i> Gerer horaire</a>  
                                     </center>
                                     
                                 </div>                                
                             </div>
                             <div class="card-footer d-flex justify-content-between">
-                                <a href="#" class="btn btn-primary w-100">Voir Tout l'horaire</a>
+                                <a href="#" class="btn btn-success w-100">Voir Tout l'horaire</a>
                             </div>
                         </div>
                     </div>
 
-                    <!-- pour afficher les massage  -->
-                    <div class="alert-info alert text-center">Message</div>
-                    <!-- Le form qui enregistrer les données  -->
+                    <!-- pour afficher les massage  
+                    <div class="alert-info alert text-center">Message</div>-->
+                    <!-- Le form qui enregistrer les données  
                     <div class="col-xl-12 ">
                         <form action="" class="shadow p-3">
                             <div class="row">
@@ -85,8 +84,8 @@
                                 </div>
                             </div>
                         </form>
-                    </div>
-                    <!-- La table qui affiche les données  -->
+                    </div>-->
+                    <!-- La table qui affiche les données  
                     <div class="col-xl-12 table-responsive px-3 mt-3">
                         <table class="table table-sm text-center shadow">
                             <thead>
@@ -111,7 +110,7 @@
                                 </td>
                             </tbody>
                         </table>
-                    </div>
+                    </div>-->
                 </div>
             </div>
 

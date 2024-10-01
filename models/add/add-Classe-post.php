@@ -6,8 +6,8 @@
     if(!empty($description)){
       #verifier si le client existe ou pas dans la bd
       $statut=0;
-      $getClass=$connexion->prepare("SELECT * FROM `classe` WHERE `nomClasse`=? AND orientation=? AND statut=?");
-      $getClass->execute([$description,$option,$statut]);
+      $getClass=$connexion->prepare("SELECT * FROM `classe` WHERE `nomclasse`=? AND options=? AND supprimer=?");
+      $getClass->execute([$description,$Option,$statut]);
       ($Class=$getClass->fetch());
       if($Class>0){
         $msg='Cette Class existe déjà dans la base de données !';  
@@ -15,7 +15,7 @@
         header("location:../../views/classe.php");
       }else{ 
         //Insertion data from database
-        $req=$connexion->prepare("INSERT INTO `classe`(`nomClasse`, `orientation`, `statut`)VALUES(?,?,?)");
+        $req=$connexion->prepare("INSERT INTO `classe`(`nomclasse`, `options`, `supprimer`) VALUES (?,?,?)");
         $resultat=$req->execute([$description,$Option,$statut]);
         if($resultat==true){
           $_SESSION['msg']="Un Enregistrement viens d'etre effectué !";

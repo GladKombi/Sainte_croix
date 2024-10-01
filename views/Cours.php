@@ -42,7 +42,7 @@ require_once('../models/select/select-Cours.php'); //Appel du script de selectio
                                 <div class="col-12 p-3">
                                     <label for="">Description <span class="text-danger">*</span></label>
                                     <input required type="text" name="description" class="form-control" placeholder="Entrez une description" <?php if (isset($_GET['idCours'])) { ?>
-                                        value="<?php echo $tab['intituler']; ?> <?php }?>">
+                                        value="<?php echo $tab['nomcours']; ?> <?php }?>">
                                 </div>
                                 <div class="col-12 p-3">
                                     <label for="">Maxima <span class="text-danger">*</span></label>
@@ -74,7 +74,7 @@ require_once('../models/select/select-Cours.php'); //Appel du script de selectio
                                 ?>
                                     <tr>
                                         <th scope="row"><?= $n; ?></th> 
-                                    <td><?= $idCours["intituler"] ?></td>
+                                    <td><?= $idCours["nomcours"] ?></td>
                                     <td><?= $idCours["maxima"] ?></td>
                                     <td>
                                         <a href="Cours.php?idCours=<?= $idCours['id'] ?>" class="btn btn-success btn-sm">

@@ -8,15 +8,15 @@ if (isset($_POST['Valider']) && !empty($_GET['idCours'])) {
     if (!empty($description)) {
         #verifier si le client existe ou pas dans la bd
         $statut = 0;
-        $getCours = $connexion->prepare("SELECT * FROM `cours` WHERE `intituler`=? AND statut=?");
-        $getCours->execute([$description, $statut]);
+        $getCours = $connexion->prepare("SELECT * FROM `cours` WHERE `nomcours`=? AND supprimer=? and id!=?");
+        $getCours->execute([$description, $statut,$id]);
         ($Cours = $getCours->fetch());
         if ($Cours > 0) {
-            $msg = 'Cette Cours de frais existe déjà dans la base de données !';
+            $msg = 'Ce Cours existe déjà dans la base de données !';
             $_SESSION['msg'] = $msg;
             header("location:../../views/Cours.php");
         } else {
-            $req = $connexion->prepare("UPDATE `cours` SET `intituler`=?, `maxima`=?   WHERE id=?");
+            $req = $connexion->prepare("UPDATE `cours` SET `nomcours`=?, `maxima`=?   WHERE id=?");
             $resultat = $req->execute([$description, $maxima, $id]);
             if ($resultat == true) {
                 $_SESSION['msg'] = "La modification réussi";
